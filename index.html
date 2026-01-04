@@ -235,10 +235,16 @@
 
     .video-grid-3x2 .video-scene-img {
       width: 100%;
-      height: 300px;
+      height: 450px;
       object-fit: cover;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .video-grid-3x2 .video-scene-img:hover {
+      transform: scale(1.05);
     }
 
     .video-wrapper {
@@ -261,8 +267,16 @@
 
     .prompt-image {
       width: 100%;
+      max-height: 600px;
+      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .prompt-image:hover {
+      transform: scale(1.02);
     }
 
     #prod3-galerie .gal-block{
@@ -482,12 +496,12 @@
         <div class="mb-8 flex justify-center gap-6 flex-wrap">
           <img src="fillerousse.png" 
                alt="Image générée - fille rousse version 1" 
-               class="rounded-xl shadow-lg"
-               style="width: 45%; min-width: 300px; height: auto; object-fit: contain;">
+               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
           <img src="fillerousse2.png" 
                alt="Image générée - fille rousse version 2" 
-               class="rounded-xl shadow-lg"
-               style="width: 45%; min-width: 300px; height: auto; object-fit: contain;">
+               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
         </div>
         
         <div class="mb-8">
@@ -656,7 +670,7 @@
 
           <div class="three-col">
             <figure class="img-card">
-              <img src="cannette.jpeg" alt="Support canette">
+              <img src="gris.jpeg" alt="Support canette">
               <figcaption>Image 1 — Support canette</figcaption>
             </figure>
 
