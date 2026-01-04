@@ -7,17 +7,13 @@
   <link rel="icon" type="image/png" href="logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     * {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-    
-    h1, h2, h3, h4, nav a {
-      font-family: 'Lato', sans-serif;
     }
     
     body {
@@ -211,19 +207,17 @@
       min-height: 300px;
     }
 
-    .image-grid {
+    .video-grid-3x2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
       gap: 20px;
       margin-bottom: 40px;
     }
 
-    .image-grid img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
+    .video-grid-3x2 .placeholder-image {
+      height: 300px;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
     .video-wrapper {
@@ -246,16 +240,8 @@
 
     .prompt-image {
       width: 100%;
-      max-height: 600px;
-      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .prompt-image:hover {
-      transform: scale(1.02);
     }
 
     #prod3-galerie .gal-block{
@@ -284,23 +270,16 @@
       padding:12px;
       box-shadow:0 10px 30px rgba(0,0,0,0.06);
     }
-    #prod3-galerie .img-card img{
-      width: 100%;
-      height: 450px;
-      object-fit: contain;
-      border-radius: 14px;
-      display:block;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      background: #f8f8f8;
+    #prod3-galerie .img-card img,
+    #prod3-galerie .img-card .placeholder-image{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      border-radius:14px;
     }
-
-    #prod3-galerie .img-card img:hover{
-      transform: scale(1.03);
-    }
-
-    #prod3-galerie .img-card.single img{
-      height: 650px;
+    #prod3-galerie .img-card.single img,
+    #prod3-galerie .img-card.single .placeholder-image{ 
+      height:420px; 
     }
     #prod3-galerie figcaption{
       margin-top:10px;
@@ -324,6 +303,18 @@
       position: absolute;
       left: 0;
       top: 4px;
+    }
+
+    .closing-quote {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #7a4a2b;
+      opacity: 0.85;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -363,10 +354,9 @@
   <section id="accueil" class="min-h-screen flex items-center justify-center px-6 pt-20">
     <div class="text-center max-w-4xl">
       <div class="mb-8 flex justify-center">
-        <img src="logo.png" 
-             alt="Illustration IA Creative" 
-             class="w-64 h-64 md:w-80 md:h-80 object-contain rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500"
-             style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3); background: white;">
+        <div class="placeholder-image w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl" style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3);">
+          logo.png
+        </div>
       </div>
       <h1 class="main-title text-5xl md:text-7xl font-bold mb-6">
         Portfolio IA – Écriture multimédia
@@ -484,14 +474,12 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
         
         <div class="mb-8 flex justify-center gap-6 flex-wrap">
-          <img src="fillerousse.png" 
-               alt="Image générée - fille rousse version 1" 
-               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
-          <img src="fillerousse2.png" 
-               alt="Image générée - fille rousse version 2" 
-               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
+          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
+            fillerousse.png
+          </div>
+          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
+            fillerousse2.png
+          </div>
         </div>
         
         <div class="mb-8">
@@ -517,23 +505,20 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 2 : Vidéo cinématographique vintage</h3>
         <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
 
-        <div class="mb-8 flex justify-center">
-          <div class="grid grid-cols-2 gap-4 w-full max-w-4xl">
-            <img src="rue.png" alt="Scène 1 - La rue" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img src="porte.png" alt="Scène 2 - La porte" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img src="jambe.png" alt="Scène 3 - La jambe" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img src="corps.png" alt="Scène 4 - Le corps" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img src="voiture.png" alt="Scène 5 - La voiture" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img src="pas.png" alt="Scène 6 - Les pas" class="w-full rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-          </div>
+        <div class="video-grid-3x2">
+          <div class="placeholder-image">rue.png</div>
+          <div class="placeholder-image">porte.png</div>
+          <div class="placeholder-image">jambe.png</div>
+          <div class="placeholder-image">corps.png</div>
+          <div class="placeholder-image">voiture.png</div>
+          <div class="placeholder-image">pas.png</div>
         </div>
 
         <div class="video-wrapper">
           <h4 class="section-subtitle">Vidéo finale</h4>
-          <video controls class="video">
-            <source src="video.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-          </video>
+          <div class="placeholder-image video">
+            Vidéo video.mp4
+          </div>
         </div>
 
         <div class="card mt-12">
@@ -547,7 +532,7 @@
           </p>
 
           <h5 class="font-semibold mb-3 text-[#ff4fa3]">Prompt utilisé</h5>
-          <img src="promptvideo.png" alt="Capture d'écran du prompt vidéo" class="prompt-image">
+          <div class="placeholder-image prompt-image">promptvideo.png</div>
         </div>
 
         <div class="card mt-8">
@@ -580,145 +565,141 @@
 
       <section class="production-card" id="prod3-galerie">
         <div class="flex items-start justify-between mb-8 flex-wrap gap-4">
-          <h3 class="text-3xl font-bold text-[#7a4a2b]">Production 3 : Galerie – Prototypage & créations IA</h3>
-          <span class="badge">Galerie</span>
-        </div>
+          <div class="mb-8">
+      <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Intention</h4>
+      <p class="leading-relaxed text-lg">
+        Présenter plusieurs productions IA sous forme de galerie, en mettant en avant le processus
+        (prompt, avant/après, résultat) et la cohérence visuelle.
+      </p>
+    </div>
 
-        <div class="mb-8">
-          <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Intention</h4>
-          <p class="leading-relaxed text-lg">
-            Présenter plusieurs productions IA sous forme de galerie, en mettant en avant le processus
-            (prompt, avant/après, résultat) et la cohérence visuelle.
-          </p>
-        </div>
+    <div class="mb-8 grid md:grid-cols-2 gap-8">
+      <div>
+        <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Outils utilisés</h4>
+        <p class="leading-relaxed text-lg">
+          Gemini IA, Chatgpt, Google Studio IA et CANVA.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Lien avec mon futur métier</h4>
+        <p class="leading-relaxed text-lg">
+          Dans les métiers de la communication digitale, ce type de galerie me permet de produire rapidement
+          des visuels, tester des variantes et présenter une direction créative.
+        </p>
+      </div>
+    </div>
 
-        <div class="mb-8 grid md:grid-cols-2 gap-8">
-          <div>
-            <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Outils utilisés</h4>
-            <p class="leading-relaxed text-lg">
-              Gemini IA, Chatgpt, Google Studio IA et CANVA.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Lien avec mon futur métier</h4>
-            <p class="leading-relaxed text-lg">
-              Dans les métiers de la communication digitale, ce type de galerie me permet de produire rapidement
-              des visuels, tester des variantes et présenter une direction créative.
-            </p>
-          </div>
-        </div>
+    <div class="mb-10">
+      <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Méthodologie</h4>
+      <p class="leading-relaxed text-lg">
+        J'ai organisé mes créations en séries (avant/après, prompt + résultat, comparaison)
+        afin de rendre visible le processus et le rôle du prompt dans le rendu final.
+      </p>
+    </div>
 
-        <div class="mb-10">
-          <h4 class="font-semibold mb-3 text-xl text-[#ff4fa3]">Méthodologie</h4>
-          <p class="leading-relaxed text-lg">
-            J'ai organisé mes créations en séries (avant/après, prompt + résultat, comparaison)
-            afin de rendre visible le processus et le rôle du prompt dans le rendu final.
-          </p>
-        </div>
+    <div class="gal-block">
+      <h4 class="gal-title">Série 1 — Pose sheet (avant / après)</h4>
 
-        <div class="gal-block">
-          <h4 class="gal-title">Série 1 — Pose sheet (avant / après)</h4>
+      <div class="two-col">
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">dupliquer1.jpeg</div>
+          <figcaption>Avant</figcaption>
+        </figure>
 
-          <div class="two-col">
-            <figure class="img-card">
-              <img src="dupliquer1.jpeg" alt="Avant – illustration originale">
-              <figcaption>Avant</figcaption>
-            </figure>
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">dupliquer2.jpeg</div>
+          <figcaption>Après</figcaption>
+        </figure>
+      </div>
 
-            <figure class="img-card">
-              <img src="dupliquer2.jpeg" alt="Après – pose sheet avec plusieurs poses">
-              <figcaption>Après</figcaption>
-            </figure>
-          </div>
+      <div class="prompt-box">
+        <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
+        <p>Please create a pose sheet for this illustration, making various poses!</p>
+      </div>
+    </div>
 
-          <div class="prompt-box">
-            <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
-            <p>Please create a pose sheet for this illustration, making various poses!</p>
-          </div>
-        </div>
+    <div class="gal-block">
+      <h4 class="gal-title">Série 2 — Portrait "artist"</h4>
 
-        <div class="gal-block">
-          <h4 class="gal-title">Série 2 — Portrait "artist"</h4>
+      <figure class="img-card single">
+        <div class="placeholder-image" style="height: 420px;">artisan1.jpeg</div>
+        <figcaption>Résultat</figcaption>
+      </figure>
 
-          <figure class="img-card single">
-            <img src="artisan.jpeg" alt="Portrait artistique avec miniature">
-            <figcaption>Résultat</figcaption>
-          </figure>
+      <div class="prompt-box">
+        <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
+        <p>
+          Create a portrait depicting the person as an artist painting a miniature figure.
+          The person is dressed in their most iconic outfit, looking confidently directly at the camera,
+          holding a small paintbrush in one hand. A mini version of themselves is prominently placed
+          on a clean workbench in front of them...
+        </p>
+      </div>
+    </div>
 
-          <div class="prompt-box">
-            <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
-            <p>
-              Create a portrait depicting the person as an artist painting a miniature figure.
-              The person is dressed in their most iconic outfit, looking confidently directly at the camera,
-              holding a small paintbrush in one hand. A mini version of themselves is prominently placed
-              on a clean workbench in front of them...
-            </p>
-          </div>
-        </div>
+    <div class="gal-block">
+      <h4 class="gal-title">Série 3 — Mockup rapide (IA vs retouche manuelle)</h4>
 
-        <div class="gal-block">
-          <h4 class="gal-title">Série 3 — Mockup rapide (IA vs retouche manuelle)</h4>
+      <p class="leading-relaxed text-lg mb-6">
+        Cette série m'a permis de comparer : l'IA peut générer un mockup rapidement, alors qu'un montage similaire peut prendre plus de temps sur Photoshop en retouche manuelle selon le niveau de précision attendu.
+      </p>
 
-          <div class="three-col">
-            <figure class="img-card">
-              <img src="gris.jpeg" alt="Support canette">
-              <figcaption>Image 1 — Support canette</figcaption>
-            </figure>
+      <div class="three-col">
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">cannette.jpeg</div>
+          <figcaption>Image 1 — Support canette</figcaption>
+        </figure>
 
-            <figure class="img-card">
-              <img src="fillecannette.jpeg" alt="Design de référence">
-              <figcaption>Image 2 — Design</figcaption>
-            </figure>
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">fillecannette.jpeg</div>
+          <figcaption>Image 2 — Design</figcaption>
+        </figure>
 
-            <figure class="img-card">
-              <img src="finalecannette.jpeg" alt="Résultat final">
-              <figcaption>Résultat final</figcaption>
-            </figure>
-          </div>
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">finalecannette.jpeg</div>
+          <figcaption>Résultat final</figcaption>
+        </figure>
+      </div>
 
-          <div class="prompt-box">
-            <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
-            <p>
-              Apply the design from Image 1 to the can in Image 2,
-              and place it in a minimalist design setting, professional photography.
-            </p>
-          </div>
+      <div class="prompt-box">
+        <p class="text-xs uppercase tracking-wide mb-2 opacity-60">Prompt</p>
+        <p>
+          Apply the design from Image 1 to the can in Image 2,
+          and place it in a minimalist design setting, professional photography.
+        </p>
+      </div>
+    </div>
 
-          <p class="leading-relaxed text-lg mt-4">
-            Cette série m'a permis de comparer : l'IA peut générer un mockup rapidement, alors qu'un montage similaire peut prendre plus de temps sur photoshop en retouche manuelle selon le niveau de précision attendu.
-          </p>
-        </div>
+    <div class="mt-10">
+      <h4 class="font-semibold mb-4 text-xl text-[#ff4fa3]">Analyse critique</h4>
+      <ul class="bullets">
+        <li><strong>IA vs moi :</strong> l'IA génère des propositions, je fixe l'intention et j'affine les prompts.</li>
+        <li><strong>Limites :</strong> cohérence parfois variable et des retouches fréquentes.</li>
+        <li><strong>Ce que je referais :</strong> définir plus précisément le style et les contraintes dès le départ.</li>
+      </ul>
+    </div>
 
-        <div class="mt-10">
-          <h4 class="font-semibold mb-4 text-xl text-[#ff4fa3]">Analyse critique</h4>
-          <ul class="bullets">
-            <li><strong>IA vs moi :</strong> L'IA génère des propositions, je fixe l'intention et j'affine les prompts.</li>
-            <li><strong>Limites :</strong> cohérence parfois variable et des retouches fréquentes.</li>
-            <li><strong>Ce que je referais :</strong> définir plus précisément le style et les contraintes dès le départ.</li>
-          </ul>
-        </div>
+    <div class="gal-block">
+      <h4 class="gal-title">Images pour réseaux sociaux</h4>
 
-        <div class="gal-block">
-          <h4 class="gal-title">Génération d'images pour les réseaux sociaux</h4>
+      <div class="two-col">
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">blanc.png</div>
+        </figure>
 
-          <div class="two-col">
-            <figure class="img-card">
-              <img src="blanc.png" alt="Création IA pour réseaux sociaux 1">
-            </figure>
+        <figure class="img-card">
+          <div class="placeholder-image" style="height: 260px;">work.png</div>
+        </figure>
+      </div>
 
-            <figure class="img-card">
-              <img src="work.png" alt="Création IA pour réseaux sociaux 2">
-            </figure>
-          </div>
-
-          <p class="leading-relaxed text-lg mt-4">
-            J'ai aussi généré ces deux images : c'est pratique dans un contexte professionnel, notamment pour les réseaux sociaux. Cela permet de gagner du temps par rapport à la recherche d'images libres de droit, tout en obtenant des visuels plus spécifiques, adaptés à un message précis, et en gardant une cohérence avec l'intention créative.
-          </p>
-        </div>
-      </section>
+      <p class="leading-relaxed text-lg mt-6">
+        J'ai aussi généré ces deux images : c'est pratique dans un contexte professionnel, notamment pour les réseaux sociaux. Cela permet de gagner du temps par rapport à la recherche d'images libres de droit, tout en obtenant des visuels plus spécifiques, adaptés à un message précis, et en gardant une cohérence avec l'intention créative.
+      </p>
     </div>
   </section>
-
+</div>
+          <h3 class="text-3xl font-bold text-[#7a4a2b]">Production 3 : Galerie – Prototypage & créations IA
+            </section>
   <section id="conclusion" class="py-24 px-6 bg-white/50">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Conclusion</h2>
@@ -728,10 +709,6 @@
           Ce cours m'a appris à utiliser l'IA de manière plus stratégique et consciente. Je ne la vois plus comme une simple aide ponctuelle, mais comme un véritable outil de travail que je peux maîtriser et adapter à mes besoins.
         </p>
       </div>
-      <div class="highlight-box mb-8">
-        <h4 class="font-semibold text-xl mb-3">Ma règle personnelle</h4>
-        <p class="text-2xl">L'IA propose, je dispose. Elle accélère, je dirige.</p>
-      </div>
       <div class="card">
         <h3 class="text-2xl font-semibold mb-4 text-[#7a4a2b]">Ce que je veux continuer à développer</h3>
         <p class="text-lg leading-relaxed">
@@ -740,11 +717,12 @@
       </div>
     </div>
   </section>
-
+  <div class="closing-quote bg-white/50">
+    L'IA me permet d'aller plus vite, sans perdre ce qui fait l'essence de mon travail à la fin.
+  </div>
   <footer class="py-12 px-6 text-center bg-white/50">
     <p class="opacity-60">Sounkara CAMARA • Portfolio IA – Écriture multimédia • 2026</p>
   </footer>
-
   <script>
     const bubblesContainer = document.getElementById('bubbles');
     
