@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio IA – Écriture multimédia</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap');
@@ -225,19 +226,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    .video-grid-3x2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .video-grid-3x2 .placeholder-image {
-      height: 300px;
-      border-radius: 16px;
-    }
-
     .video-wrapper {
       margin-top: 20px;
       margin-bottom: 40px;
@@ -258,8 +246,16 @@
 
     .prompt-image {
       width: 100%;
+      max-height: 600px;
+      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .prompt-image:hover {
+      transform: scale(1.02);
     }
 
     #prod3-galerie .gal-block{
@@ -289,12 +285,23 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.06);
     }
     #prod3-galerie .img-card img{
-      width:100%;
-      height:260px;
-      object-fit:cover;
-      border-radius:14px;
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      border-radius: 14px;
+      display:block;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background: #f8f8f8;
     }
-    #prod3-galerie .img-card.single img{ height:420px; }
+
+    #prod3-galerie .img-card img:hover{
+      transform: scale(1.03);
+    }
+
+    #prod3-galerie .img-card.single img{
+      height: 650px;
+    }
     #prod3-galerie figcaption{
       margin-top:10px;
       font-weight:600;
@@ -356,9 +363,10 @@
   <section id="accueil" class="min-h-screen flex items-center justify-center px-6 pt-20">
     <div class="text-center max-w-4xl">
       <div class="mb-8 flex justify-center">
-        <div class="placeholder-image w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl" style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3);">
-          Image intro.png
-        </div>
+        <img src="intro.png" 
+             alt="Illustration IA Creative" 
+             class="w-64 h-64 md:w-80 md:h-80 object-contain rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500"
+             style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3); background: white;">
       </div>
       <h1 class="main-title text-5xl md:text-7xl font-bold mb-6">
         Portfolio IA – Écriture multimédia
@@ -476,12 +484,14 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
         
         <div class="mb-8 flex justify-center gap-6 flex-wrap">
-          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
-            fillerousse.png
-          </div>
-          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
-            fillerousse2.png
-          </div>
+          <img src="fillerousse.png" 
+               alt="Image générée - fille rousse version 1" 
+               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
+          <img src="fillerousse2.png" 
+               alt="Image générée - fille rousse version 2" 
+               class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+               style="width: 45%; min-width: 350px; height: auto; max-height: 600px; object-fit: contain;">
         </div>
         
         <div class="mb-8">
@@ -507,20 +517,16 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 2 : Vidéo cinématographique vintage</h3>
         <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
 
-        <div class="video-grid-3x2">
-          <div class="placeholder-image">rue.png</div>
-          <div class="placeholder-image">taxi.png</div>
-          <div class="placeholder-image">porte.png</div>
-          <div class="placeholder-image">jambe.png</div>
-          <div class="placeholder-image">marche.png</div>
-          <div class="placeholder-image">silhouette.png</div>
+        <div class="mb-8 flex justify-center">
+          <img src="page.png" alt="Scènes du projet vidéo" class="w-full max-w-4xl rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
         </div>
 
         <div class="video-wrapper">
           <h4 class="section-subtitle">Vidéo finale</h4>
-          <div class="placeholder-image video">
-            Vidéo video.mp4
-          </div>
+          <video controls class="video">
+            <source src="video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+          </video>
         </div>
 
         <div class="card mt-12">
@@ -535,7 +541,7 @@
           </p>
 
           <h5 class="font-semibold mb-3 text-[#ff4fa3]">Prompt utilisé</h5>
-          <div class="placeholder-image prompt-image">promptvideo.png</div>
+          <img src="promptvideo.png" alt="Capture d'écran du prompt vidéo" class="prompt-image">
         </div>
 
         <div class="card mt-8">
@@ -609,12 +615,12 @@
 
           <div class="two-col">
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">dupliquer1.jpeg</div>
+              <img src="dupliquer1.jpeg" alt="Avant – illustration originale">
               <figcaption>Avant</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">dupliquer2.jpeg</div>
+              <img src="dupliquer2.jpeg" alt="Après – pose sheet avec plusieurs poses">
               <figcaption>Après</figcaption>
             </figure>
           </div>
@@ -629,7 +635,7 @@
           <h4 class="gal-title">Série 2 — Portrait "artist"</h4>
 
           <figure class="img-card single">
-            <div class="placeholder-image" style="height: 420px;">artisan1.jpeg</div>
+            <img src="artisan.jpeg" alt="Portrait artistique avec miniature">
             <figcaption>Résultat</figcaption>
           </figure>
 
@@ -649,17 +655,17 @@
 
           <div class="three-col">
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">cannette.jpeg</div>
+              <img src="gris.jpeg" alt="Support canette">
               <figcaption>Image 1 — Support canette</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">fillecannette.jpeg</div>
+              <img src="fillecannette.jpeg" alt="Design de référence">
               <figcaption>Image 2 — Design</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">finalecannette.jpeg</div>
+              <img src="finalecannette.jpeg" alt="Résultat final">
               <figcaption>Résultat final</figcaption>
             </figure>
           </div>
@@ -671,6 +677,10 @@
               and place it in a minimalist design setting, professional photography.
             </p>
           </div>
+
+          <p class="leading-relaxed text-lg mt-4">
+            Cette série m'a permis de comparer : l'IA peut générer un mockup rapidement, alors qu'un montage similaire peut prendre plus de temps en retouche manuelle selon le niveau de précision attendu.
+          </p>
         </div>
 
         <div class="mt-10">
@@ -712,7 +722,6 @@
   </footer>
 
   <script>
-    // Bubbles animation
     const bubblesContainer = document.getElementById('bubbles');
     
     function createBubble() {
@@ -743,7 +752,6 @@
       setTimeout(createBubble, i * 300);
     }
 
-    // Menu burger toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     
@@ -751,7 +759,6 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Close mobile menu when clicking on a link
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -759,7 +766,6 @@
       });
     });
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
