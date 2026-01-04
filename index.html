@@ -173,11 +173,8 @@
       margin-bottom: 40px;
     }
 
-    /* CSS Corrigé pour les images de la grille vidéo */
+    /* Images de la grille vidéo */
     .video-grid-3x2 img {
-      height: 300px;
-      border-radius: 16px;
-      object-fit: cover;
       width: 100%;
       height: auto;
       object-fit: contain;
@@ -186,7 +183,7 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     }
 
-    /* CSS pour la Lightbox */
+    /* Lightbox */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -213,9 +210,6 @@
 
     .video-wrapper { margin-top: 20px; margin-bottom: 40px; }
 
-    .video {
-@@ -194,17 +221,19 @@
-
     .prompt-image { width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
     #prod3-galerie .gal-block { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,79,163,0.15); }
@@ -224,6 +218,9 @@
     @media (min-width:768px){
       #prod3-galerie .two-col{ grid-template-columns:1fr 1fr; }
       #prod3-galerie .three-col{ grid-template-columns:1fr 1fr 1fr; }
+    }
+
+    #prod3-galerie .img-card { background:#fff; border-radius:18px; padding:12px; box-shadow:0 10px 30px rgba(0,0,0,0.06); }
     #prod3-galerie .img-card img {
       width: 100%;
       height: auto;
@@ -237,44 +234,50 @@
       max-height: 720px;
       margin: 0 auto;
     }
-    #prod3-galerie .img-card { background:#fff; border-radius:18px; padding:12px; box-shadow:0 10px 30px rgba(0,0,0,0.06); }
-    #prod3-galerie .img-card img { width:100%; height:260px; object-fit:cover; border-radius:14px; display:block; }
-    #prod3-galerie .img-card.single img { height:420px; }
+
     #prod3-galerie figcaption { margin-top:10px; font-weight:600; color:#7a4a2b; }
 
     .bullets { list-style: none; padding: 0; }
     .bullets li { padding: 8px 0; padding-left: 24px; position: relative; }
-@@ -383,8 +412,8 @@
-        <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
+  </style>
+</head>
 
-        <div class="mb-8 flex justify-center gap-6 flex-wrap">
-          <img src="fillerousse.png" alt="Fille rousse 1" class="rounded-xl shadow-lg object-cover" style="width: 45%; min-width: 300px; height: 400px;" />
-          <img src="fillerousse2.png" alt="Fille rousse 2" class="rounded-xl shadow-lg object-cover" style="width: 45%; min-width: 300px; height: 400px;" />
-          <img src="fillerousse.png" class="rounded-xl shadow-lg object-contain bg-white" style="width:45%; min-width:300px; height:auto;" alt="Fille rousse 1" />
-          <img src="fillerousse2.png" alt="Fille rousse 2" class="rounded-xl shadow-lg object-contain bg-white" style="width: 45%; min-width: 300px; height: auto;" />
-        </div>
+<body>
+  <!-- ... ton contenu avant ... -->
 
-        <div class="mb-8">
-@@ -417,12 +446,12 @@
-        <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
+  <!-- Exemple : section Production 1 (corrigée) -->
+  <section id="production1" class="production-card">
+    <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
 
-        <div class="video-grid-3x2">
-          <img src="rue.png" alt="Rue" />
-          <img src="porte.png" alt="Porte" />
-          <img src="jambe.png" alt="Jambe" />
-          <img src="corps.png" alt="Corps" />
-          <img src="voiture.png" alt="Voiture" />
-          <img src="pas.png" alt="Pas" />
-          <img src="rue.png" alt="Rue" class="zoomable" />
-          <img src="porte.png" alt="Porte" class="zoomable" />
-          <img src="jambe.png" alt="Jambe" class="zoomable" />
-          <img src="corps.png" alt="Corps" class="zoomable" />
-          <img src="voiture.png" alt="Voiture" class="zoomable" />
-          <img src="pas.png" alt="Pas" class="zoomable" />
-        </div>
+    <div class="mb-8 flex justify-center gap-6 flex-wrap">
+      <img src="fillerousse.png" class="rounded-xl shadow-lg object-contain bg-white" style="width:45%; min-width:300px; height:auto;" alt="Fille rousse 1" />
+      <img src="fillerousse2.png" alt="Fille rousse 2" class="rounded-xl shadow-lg object-contain bg-white" style="width: 45%; min-width: 300px; height: auto;" />
+    </div>
 
-        <div class="video-wrapper">
-@@ -634,6 +663,10 @@
+    <div class="mb-8">
+      <!-- Ton texte d'origine ici (inchangé) -->
+    </div>
+  </section>
+
+  <!-- Exemple : grille vidéo (doublon supprimé) -->
+  <section id="production2" class="production-card">
+    <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
+
+    <div class="video-grid-3x2">
+      <img src="rue.png" alt="Rue" class="zoomable" />
+      <img src="porte.png" alt="Porte" class="zoomable" />
+      <img src="jambe.png" alt="Jambe" class="zoomable" />
+      <img src="corps.png" alt="Corps" class="zoomable" />
+      <img src="voiture.png" alt="Voiture" class="zoomable" />
+      <img src="pas.png" alt="Pas" class="zoomable" />
+    </div>
+
+    <div class="video-wrapper">
+      <!-- Ton contenu vidéo d'origine ici (inchangé) -->
+    </div>
+  </section>
+
+  <footer class="py-10 text-center">
     <p class="opacity-60">Sounkara CAMARA • Portfolio IA – Écriture multimédia • 2026</p>
   </footer>
 
@@ -285,25 +288,19 @@
   <script>
     const bubblesContainer = document.getElementById('bubbles');
 
-@@ -681,6 +714,29 @@
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
     // Script Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
 
     document.querySelectorAll('img').forEach(img => {
-      // On n'ajoute pas le zoom sur le logo ou les icônes si besoin, mais ici sur toutes
       if(!img.classList.contains('no-zoom')) {
-          img.classList.add('zoomable');
-          img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt || 'Image agrandie';
-            lightbox.classList.add('open');
-            lightbox.setAttribute('aria-hidden', 'false');
-          });
+        img.classList.add('zoomable');
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt || 'Image agrandie';
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
       }
     });
 
