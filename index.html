@@ -14,9 +14,7 @@
 
     * {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
     body {
@@ -24,7 +22,6 @@
       background-size: 200% 200%;
       animation: gradientShift 15s ease infinite;
       color: #1a1a1a;
-      position: relative;
       overflow-x: hidden;
     }
 
@@ -33,139 +30,43 @@
       50% { background-position: 100% 50%; }
     }
 
+    /* Bulles */
     .bubble-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
     }
-
     .bubble {
-      position: absolute;
-      border-radius: 50%;
+      position: absolute; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 79, 163, 0.2));
-      opacity: 0.6;
-      animation: float-up linear infinite;
-      box-shadow: 0 8px 20px rgba(255, 79, 163, 0.2);
+      opacity: 0.6; animation: float-up linear infinite;
     }
-
     @keyframes float-up {
-      0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
       10% { opacity: 0.6; }
       90% { opacity: 0.6; }
       100% { transform: translateY(-100px) translateX(var(--drift)) scale(1); opacity: 0; }
     }
 
-    section { position: relative; z-index: 1; }
+    nav { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.85); border-bottom: 1px solid rgba(255, 79, 163, 0.1); }
 
-    nav {
-      backdrop-filter: blur(20px);
-      background: rgba(255, 255, 255, 0.85);
-      border-bottom: 1px solid rgba(255, 79, 163, 0.1);
-    }
-
-    nav a {
-      position: relative;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #ff4fa3;
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after { width: 100%; }
-
-    .card {
+    .card, .production-card {
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 20px;
       padding: 32px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
       transition: all 0.4s ease;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(255, 79, 163, 0.15);
+    /* --- GESTION DES IMAGES (Taille réelle, jamais coupée) --- */
+    img {
+      max-width: 100%;
+      height: auto !important; /* Force le respect des proportions */
+      display: block;
+      object-fit: contain !important; /* Empêche tout rognage */
     }
 
-    .highlight-box {
-      background: linear-gradient(135deg, #ff4fa3 0%, #ff7eb6 50%, #7a4a2b 100%);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 12px 40px rgba(255, 79, 163, 0.25);
-      color: white;
-    }
-
-    .production-card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid rgba(255, 79, 163, 0.1);
-      border-radius: 24px;
-      padding: 40px;
-      margin: 32px 0;
-      transition: all 0.4s ease;
-    }
-
-    .production-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(255, 79, 163, 0.15);
-    }
-
-    .prompt-box {
-      background: linear-gradient(135deg, #f8f8fa 0%, #ffffff 100%);
-      border-left: 4px solid #ff4fa3;
-      padding: 20px;
-      margin: 16px 0;
-      border-radius: 12px;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      word-wrap: break-word;
-    }
-
-    .badge {
-      display: inline-flex;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      background: linear-gradient(135deg, #fff0f3, #ffe4e9);
-      color: #ff4fa3;
-      border: 2px solid rgba(255, 79, 163, 0.2);
-    }
-
-    .main-title {
-      background: linear-gradient(135deg, #ff4fa3 0%, #7a4a2b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .cta-button {
-      background: linear-gradient(135deg, #ff4fa3 0%, #7a4a2b 100%);
-      transition: all 0.4s ease;
-      cursor: pointer;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(255, 79, 163, 0.4);
-    }
-
-    /* GRILLES ET IMAGES ENTIERES */
+    /* Grille pour la Production 2 */
     .video-grid-3x2 {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
@@ -177,78 +78,34 @@
     }
 
     .video-grid-3x2 img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: #ffffff;
       border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: white;
     }
 
-    #prod3-galerie .two-col, #prod3-galerie .three-col {
+    /* Galerie Production 3 */
+    .gal-container {
       display: grid;
-      gap: 18px;
       grid-template-columns: 1fr;
+      gap: 24px;
     }
     @media (min-width: 768px) {
-      #prod3-galerie .two-col { grid-template-columns: 1fr 1fr; }
-      #prod3-galerie .three-col { grid-template-columns: 1fr 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr 1fr; }
+      .three-col { grid-template-columns: 1fr 1fr 1fr; }
     }
 
-    .img-card img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 14px;
-      display: block;
-    }
-
-    /* LIGHTBOX */
+    /* Lightbox (Zoom) */
     .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 9999;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px; z-index: 10000;
     }
     .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 95vw;
-      max-height: 90vh;
-      width: auto;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
-    }
+    .lightbox img { max-height: 95vh; max-width: 95vw; border-radius: 8px; }
 
     .zoomable { cursor: zoom-in; }
 
-    .video-wrapper { margin-top: 20px; margin-bottom: 40px; }
-    .video {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-      background: #000;
-    }
-
-    .bullets { list-style: none; padding: 0; }
-    .bullets li { padding: 8px 0; padding-left: 24px; position: relative; }
-    .bullets li:before { content: "•"; color: #ff4fa3; font-size: 24px; position: absolute; left: 0; top: 4px; }
-
-    .closing-quote {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 500;
-      font-style: italic;
-      color: #a67c52;
-      padding: 50px 20px 30px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    .video { width: 100%; border-radius: 20px; background: #000; }
   </style>
 </head>
 
@@ -256,23 +113,9 @@
   <div class="bubble-container" id="bubbles"></div>
 
   <nav class="fixed top-0 w-full z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4">
-      <div class="flex justify-between items-center">
-        <a href="#accueil" class="font-bold text-xl text-[#ff4fa3]">Portfolio IA</a>
-        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center focus:outline-none">
-          <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
-          <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
-          <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
-        </button>
-        <div class="hidden md:flex gap-6 text-sm">
-          <a href="#accueil" class="hover:text-[#ff4fa3]">Accueil</a>
-          <a href="#introduction" class="hover:text-[#ff4fa3]">Introduction</a>
-          <a href="#passe" class="hover:text-[#ff4fa3]">Axe 1</a>
-          <a href="#creations" class="hover:text-[#ff4fa3]">Créations IA</a>
-          <a href="#conclusion" class="hover:text-[#ff4fa3]">Conclusion</a>
-        </div>
-      </div>
-      <div id="mobileMenu" class="md:hidden hidden mt-4 flex flex-col gap-4 text-sm bg-white/90 p-4 rounded-xl">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#accueil" class="font-bold text-xl text-[#ff4fa3]">Portfolio IA</a>
+      <div class="hidden md:flex gap-6 text-sm">
         <a href="#accueil">Accueil</a>
         <a href="#introduction">Introduction</a>
         <a href="#passe">Axe 1</a>
@@ -282,135 +125,117 @@
     </div>
   </nav>
 
-  <section id="accueil" class="min-h-screen flex items-center justify-center px-6 pt-20">
-    <div class="text-center max-w-4xl">
-      <div class="mb-8 flex justify-center">
-        <img src="logo.png" alt="Logo" class="w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl object-cover no-zoom" />
-      </div>
-      <h1 class="main-title text-5xl md:text-7xl font-bold mb-6">Portfolio IA – Écriture multimédia</h1>
-      <p class="text-xl md:text-2xl mb-10 opacity-80">Mon parcours, mes tests et ce que je garde humain</p>
-      <a href="#introduction" class="cta-button inline-block px-10 py-5 rounded-full font-semibold text-white">Commencer</a>
+  <section id="accueil" class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center">
+      <img src="logo.png" alt="Logo" class="w-64 h-auto mx-auto mb-8 rounded-3xl shadow-xl" />
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[#ff4fa3]">Portfolio IA</h1>
+      <p class="text-xl opacity-80 mb-10">Écriture multimédia & Créativité</p>
+      <a href="#introduction" class="bg-[#ff4fa3] text-white px-10 py-4 rounded-full font-bold">Découvrir</a>
     </div>
   </section>
 
-  <section id="introduction" class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Introduction</h2>
+  <section id="introduction" class="py-24 px-6 max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-8 text-[#ff4fa3]">Introduction</h2>
+    <div class="card">
+      <p class="text-lg leading-relaxed">Je reprends des études en écriture multimédia... L'IA est mon outil, pas mon remplaçant.</p>
+    </div>
+  </section>
+
+  <section id="passe" class="py-24 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-[#ff4fa3]">Axe 1 : Parcours</h2>
+    <div class="grid md:grid-cols-3 gap-8">
       <div class="card">
-        <p class="text-lg leading-relaxed mb-6">Je reprends des études en écriture multimédia après avoir déjà eu des expériences dans le digital. Aujourd'hui, l'IA fait partie de ma boîte à outils, mais je ne souhaite pas qu'elle prenne la place de ma voix.</p>
-        <p class="text-lg leading-relaxed">L'intelligence artificielle est avant tout un outil d'aide. L'intention, le sens et les choix finaux restent les miens.</p>
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Passé</h3>
+        <p>Utilisation basique de l'IA pour la reformulation.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Présent</h3>
+        <p>Maîtrise du prompt engineering et outils génératifs.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Futur</h3>
+        <p>Intégration éthique et créative dans mon métier.</p>
       </div>
     </div>
   </section>
 
-  <section id="passe" class="py-24 px-6 bg-white/50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Axe 1 : Passé, Présent, Futur</h2>
-      <div class="grid md:grid-cols-3 gap-8 mb-12">
-        <div class="card">
-          <h3 class="text-xl font-semibold mb-4 text-[#7a4a2b]">Passé</h3>
-          <p>J'utilisais l'IA pour corriger des textes. Je la voyais comme un gain de temps mais je craignais un rendu trop lisse.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-xl font-semibold mb-4 text-[#7a4a2b]">Présent</h3>
-          <p>J'ai appris à mieux prompter et à structurer mes demandes. J'explore de nouveaux outils comme Claude ou Canva IA.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-xl font-semibold mb-4 text-[#7a4a2b]">Futur</h3>
-          <p>Je souhaite automatiser les tâches répétitives tout en gardant le contrôle créatif et le message final.</p>
-        </div>
+  <section id="creations" class="py-24 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-[#ff4fa3]">Axe 2 : Créations IA</h2>
+
+    <div class="production-card mb-12">
+      <h3 class="text-2xl font-bold mb-8 text-[#7a4a2b]">Production 1 : Portraits</h3>
+      <div class="flex flex-wrap gap-6 justify-center">
+        <img src="fillerousse.png" class="zoomable rounded-xl shadow-lg w-full md:w-[45%]" alt="Portrait 1" />
+        <img src="fillerousse2.png" class="zoomable rounded-xl shadow-lg w-full md:w-[45%]" alt="Portrait 2" />
+      </div>
+    </div>
+
+    <div class="production-card mb-12">
+      <h3 class="text-2xl font-bold mb-8 text-[#7a4a2b]">Production 2 : Séquences Vidéo</h3>
+      <div class="video-grid-3x2">
+        <img src="rue.png" class="zoomable" alt="Scène 1" />
+        <img src="porte.png" class="zoomable" alt="Scène 2" />
+        <img src="jambe.png" class="zoomable" alt="Scène 3" />
+        <img src="corps.png" class="zoomable" alt="Scène 4" />
+        <img src="voiture.png" class="zoomable" alt="Scène 5" />
+        <img src="pas.png" class="zoomable" alt="Scène 6" />
+      </div>
+      <video class="video mt-8" controls muted><source src="video.mp4" type="video/mp4"></video>
+    </div>
+
+    <div class="production-card">
+      <h3 class="text-2xl font-bold mb-8 text-[#7a4a2b]">Production 3 : Galerie & Mockups</h3>
+      <div class="gal-container two-col mb-8">
+        <div class="text-center"><img src="dupliquer1.jpeg" class="zoomable mx-auto rounded-lg" alt="Avant" /><p class="mt-2 font-bold">Avant</p></div>
+        <div class="text-center"><img src="dupliquer2.jpeg" class="zoomable mx-auto rounded-lg" alt="Après" /><p class="mt-2 font-bold">Après</p></div>
+      </div>
+      <div class="gal-container three-col">
+        <img src="gris.jpeg" class="zoomable rounded-lg" alt="Mockup 1" />
+        <img src="fillecannette.jpeg" class="zoomable rounded-lg" alt="Mockup 2" />
+        <img src="finalecannette.jpeg" class="zoomable rounded-lg" alt="Mockup Final" />
       </div>
     </div>
   </section>
 
-  <section id="creations" class="py-24 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Axe 2 : Créations IA</h2>
-
-      <div class="production-card">
-        <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi Image</h3>
-        <div class="flex justify-center gap-6 flex-wrap">
-          <img src="fillerousse.png" class="rounded-xl shadow-lg bg-white zoomable" style="width:45%; min-width:300px; height:auto;" alt="Fille rousse 1" />
-          <img src="fillerousse2.png" class="rounded-xl shadow-lg bg-white zoomable" style="width:45%; min-width:300px; height:auto;" alt="Fille rousse 2" />
-        </div>
-      </div>
-
-      <div class="production-card">
-        <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 2 : Vidéo Cinématographique</h3>
-        <div class="video-grid-3x2">
-          <img src="rue.png" class="zoomable" alt="Rue" />
-          <img src="porte.png" class="zoomable" alt="Porte" />
-          <img src="jambe.png" class="zoomable" alt="Jambe" />
-          <img src="corps.png" class="zoomable" alt="Corps" />
-          <img src="voiture.png" class="zoomable" alt="Voiture" />
-          <img src="pas.png" class="zoomable" alt="Pas" />
-        </div>
-        <video class="video" controls muted><source src="video.mp4" type="video/mp4"></video>
-      </div>
-
-      <div class="production-card" id="prod3-galerie">
-        <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 3 : Galerie</h3>
-        <div class="two-col mb-8">
-          <figure class="img-card"><img src="dupliquer1.jpeg" class="zoomable" alt="Avant" /><figcaption class="text-center mt-2">Avant</figcaption></figure>
-          <figure class="img-card"><img src="dupliquer2.jpeg" class="zoomable" alt="Après" /><figcaption class="text-center mt-2">Après</figcaption></figure>
-        </div>
-        <div class="three-col">
-          <img src="gris.jpeg" class="zoomable" alt="Mockup 1" />
-          <img src="fillecannette.jpeg" class="zoomable" alt="Mockup 2" />
-          <img src="finalecannette.jpeg" class="zoomable" alt="Mockup Final" />
-        </div>
-      </div>
+  <section id="conclusion" class="py-24 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-8 text-[#ff4fa3]">Conclusion</h2>
+    <div class="card italic text-xl text-[#7a4a2b]">
+      "L'IA me permet d'aller plus vite, sans perdre l'essence de mon travail."
     </div>
   </section>
 
-  <section id="conclusion" class="py-24 px-6 bg-white/50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Conclusion</h2>
-      <div class="card mb-12">
-        <p class="text-lg">L'IA est un prolongement de ma créativité, pas son remplacement.</p>
-      </div>
-      <div class="closing-quote">"L'IA me permet d'aller plus vite, sans perdre ce qui fait l'essence de mon travail."</div>
-    </div>
-  </section>
-
-  <footer class="py-12 text-center opacity-60 text-sm">
-    Sounkara CAMARA • Portfolio IA • 2026
+  <footer class="py-12 text-center opacity-50 text-sm">
+    Sounkara CAMARA • 2026
   </footer>
 
-  <div id="lightbox" class="lightbox"><img id="lightboxImg"></div>
+  <div id="lightbox" class="lightbox"><img id="lightboxImg" src="" alt="Agrandissement"></div>
 
   <script>
-    // Bulles
-    const bubblesContainer = document.getElementById('bubbles');
+    // Bulles animées
+    const container = document.getElementById('bubbles');
     function createBubble() {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      const size = Math.random() * 60 + 20;
-      bubble.style.width = size + 'px';
-      bubble.style.height = size + 'px';
-      bubble.style.left = Math.random() * 100 + '%';
-      bubble.style.animationDuration = (Math.random() * 10 + 10) + 's';
-      bubble.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
-      bubblesContainer.appendChild(bubble);
-      setTimeout(() => bubble.remove(), 20000);
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = Math.random() * 50 + 10;
+      b.style.width = b.style.height = size + 'px';
+      b.style.left = Math.random() * 100 + '%';
+      b.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      b.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+      container.appendChild(b);
+      setTimeout(() => b.remove(), 15000);
     }
-    setInterval(createBubble, 800);
+    setInterval(createBubble, 1000);
 
-    // Menu
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
+    // Lightbox Logic
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
     document.querySelectorAll('.zoomable').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('open');
-      });
+      img.onclick = () => {
+        lbImg.src = img.src;
+        lb.classList.add('open');
+      };
     });
-    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    lb.onclick = () => lb.classList.remove('open');
   </script>
 </body>
 </html>
