@@ -233,9 +233,12 @@
       margin-bottom: 40px;
     }
 
-    .video-grid-3x2 .placeholder-image {
+    .video-grid-3x2 .video-scene-img {
+      width: 100%;
       height: 300px;
+      object-fit: cover;
       border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
     .video-wrapper {
@@ -356,9 +359,10 @@
   <section id="accueil" class="min-h-screen flex items-center justify-center px-6 pt-20">
     <div class="text-center max-w-4xl">
       <div class="mb-8 flex justify-center">
-        <div class="placeholder-image w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl" style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3);">
-          Image intro.png
-        </div>
+        <img src="intro.png" 
+             alt="Illustration IA Creative" 
+             class="w-64 h-64 md:w-80 md:h-80 object-contain rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500"
+             style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3); background: white;">
       </div>
       <h1 class="main-title text-5xl md:text-7xl font-bold mb-6">
         Portfolio IA – Écriture multimédia
@@ -476,12 +480,14 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
         
         <div class="mb-8 flex justify-center gap-6 flex-wrap">
-          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
-            fillerousse.png
-          </div>
-          <div class="placeholder-image rounded-xl shadow-lg" style="width: 45%; min-width: 300px; height: 400px;">
-            fillerousse2.png
-          </div>
+          <img src="fillerousse.png" 
+               alt="Image générée - fille rousse version 1" 
+               class="rounded-xl shadow-lg"
+               style="width: 45%; min-width: 300px; height: auto; object-fit: contain;">
+          <img src="fillerousse2.png" 
+               alt="Image générée - fille rousse version 2" 
+               class="rounded-xl shadow-lg"
+               style="width: 45%; min-width: 300px; height: auto; object-fit: contain;">
         </div>
         
         <div class="mb-8">
@@ -508,19 +514,20 @@
         <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
 
         <div class="video-grid-3x2">
-          <div class="placeholder-image">rue.png</div>
-          <div class="placeholder-image">taxi.png</div>
-          <div class="placeholder-image">porte.png</div>
-          <div class="placeholder-image">jambe.png</div>
-          <div class="placeholder-image">marche.png</div>
-          <div class="placeholder-image">silhouette.png</div>
+          <img src="rue.png" alt="Scène 1 – Rue de New York de nuit" class="video-scene-img">
+          <img src="taxi.png" alt="Scène 2 – Taxi jaune à l'arrêt" class="video-scene-img">
+          <img src="porte.png" alt="Scène 3 – Porte de taxi qui s'ouvre" class="video-scene-img">
+          <img src="jambe.png" alt="Scène 4 – Jambe et talon" class="video-scene-img">
+          <img src="marche.png" alt="Scène 5 – Marche sur trottoir mouillé" class="video-scene-img">
+          <img src="silhouette.png" alt="Scène 6 – Silhouette dans la brume" class="video-scene-img">
         </div>
 
         <div class="video-wrapper">
           <h4 class="section-subtitle">Vidéo finale</h4>
-          <div class="placeholder-image video">
-            Vidéo video.mp4
-          </div>
+          <video controls class="video">
+            <source src="video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+          </video>
         </div>
 
         <div class="card mt-12">
@@ -535,7 +542,7 @@
           </p>
 
           <h5 class="font-semibold mb-3 text-[#ff4fa3]">Prompt utilisé</h5>
-          <div class="placeholder-image prompt-image">promptvideo.png</div>
+          <img src="promptvideo.png" alt="Capture d'écran du prompt vidéo" class="prompt-image">
         </div>
 
         <div class="card mt-8">
@@ -609,12 +616,12 @@
 
           <div class="two-col">
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">dupliquer1.jpeg</div>
+              <img src="dupliquer1.jpeg" alt="Avant – illustration originale">
               <figcaption>Avant</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">dupliquer2.jpeg</div>
+              <img src="dupliquer2.jpeg" alt="Après – pose sheet avec plusieurs poses">
               <figcaption>Après</figcaption>
             </figure>
           </div>
@@ -629,7 +636,7 @@
           <h4 class="gal-title">Série 2 — Portrait "artist"</h4>
 
           <figure class="img-card single">
-            <div class="placeholder-image" style="height: 420px;">artisan.jpeg</div>
+            <img src="artisan.jpeg" alt="Portrait artistique avec miniature">
             <figcaption>Résultat</figcaption>
           </figure>
 
@@ -649,17 +656,17 @@
 
           <div class="three-col">
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">cannette.jpeg</div>
+              <img src="cannette.jpeg" alt="Support canette">
               <figcaption>Image 1 — Support canette</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">fillecannette.jpeg</div>
+              <img src="fillecannette.jpeg" alt="Design de référence">
               <figcaption>Image 2 — Design</figcaption>
             </figure>
 
             <figure class="img-card">
-              <div class="placeholder-image" style="height: 260px;">finalecannette.jpeg</div>
+              <img src="finalecannette.jpeg" alt="Résultat final">
               <figcaption>Résultat final</figcaption>
             </figure>
           </div>
