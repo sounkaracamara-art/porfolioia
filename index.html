@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio IA – Écriture multimédia</title>
-
-  <link rel="icon" type="image/png" href="logo.png" />
-
+  <link rel="icon" type="image/png" href="logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
+    
     * {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0; padding: 0; box-sizing: border-box;
     }
-
+    
     body {
       background: linear-gradient(135deg, #ffe4e9 0%, #fff0f3 50%, #ffe4e9 100%);
       background-size: 200% 200%;
@@ -25,31 +22,31 @@
       position: relative;
       overflow-x: hidden;
     }
-
+    
     @keyframes gradientShift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-
+    
     .bubble-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 0; overflow: hidden;
     }
-
+    
     .bubble {
       position: absolute; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 79, 163, 0.2));
       opacity: 0.6; animation: float-up linear infinite;
       box-shadow: 0 8px 20px rgba(255, 79, 163, 0.2);
     }
-
+    
     @keyframes float-up {
       0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
       10% { opacity: 0.6; }
       90% { opacity: 0.6; }
       100% { transform: translateY(-100px) translateX(var(--drift)) scale(1); opacity: 0; }
     }
-
+    
     section { position: relative; z-index: 1; }
 
     nav {
@@ -57,43 +54,53 @@
       background: rgba(255, 255, 255, 0.85);
       border-bottom: 1px solid rgba(255, 79, 163, 0.1);
     }
-
-    nav a { position: relative; transition: color 0.3s ease; cursor: pointer; }
-    nav a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-      background: #ff4fa3; transition: width 0.3s ease;
-    }
-    nav a:hover::after { width: 100%; }
-
+    
     .card, .production-card {
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 20px;
       padding: 32px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
     }
 
-    /* FIX IMAGES : Toujours entières */
+    .prompt-box {
+      background: linear-gradient(135deg, #f8f8fa 0%, #ffffff 100%);
+      border-left: 4px solid #ff4fa3;
+      padding: 20px; margin: 16px 0; border-radius: 12px;
+      font-family: 'Courier New', monospace; font-size: 14px;
+    }
+
+    .main-title {
+      background: linear-gradient(135deg, #ff4fa3 0%, #7a4a2b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #ff4fa3 0%, #7a4a2b 100%);
+      transition: all 0.4s ease;
+    }
+
+    /* AFFICHAGE VERTICAL - IMAGES ENTIERES */
     img {
       max-width: 100%;
       height: auto !important;
-      object-fit: contain !important;
+      object-fit: contain;
       border-radius: 12px;
+      display: block;
+      margin: 0 auto;
     }
 
-    .video-grid-3x2 {
-      display: grid; grid-template-columns: 1fr; gap: 20px;
-    }
-    @media (min-width: 768px) {
-      .video-grid-3x2 { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .video-grid-3x2 img, .img-card img {
-      background: #fff;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    /* Forcer l'alignement vertical pour toutes les grilles */
+    .video-grid-3x2, .two-col, .three-col {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
+      align-items: center !important;
     }
 
-    /* Lightbox */
+    .img-card { width: 100%; max-width: 700px; }
+
     .lightbox {
       position: fixed; inset: 0; background: rgba(0,0,0,0.9);
       display: none; align-items: center; justify-content: center;
@@ -101,128 +108,144 @@
     }
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 95vw; max-height: 90vh; }
-
     .zoomable { cursor: zoom-in; }
 
-    .video { width: 100%; border-radius: 20px; background: #000; margin-top: 20px; }
-
-    .prompt-box {
-      background: #f8f8fa; border-left: 4px solid #ff4fa3;
-      padding: 20px; margin: 16px 0; border-radius: 12px;
-      font-family: monospace; font-size: 14px;
-    }
+    .video { width: 100%; max-width: 800px; border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); margin: 0 auto; }
 
     .bullets { list-style: none; padding: 0; }
     .bullets li { padding: 8px 0; padding-left: 24px; position: relative; }
     .bullets li:before { content: "•"; color: #ff4fa3; font-size: 24px; position: absolute; left: 0; top: 4px; }
+
+    .closing-quote {
+      text-align: center; font-size: 1.2rem; font-style: italic; color: #a67c52;
+      padding: 50px 20px; max-width: 800px; margin: 0 auto;
+    }
   </style>
 </head>
-
 <body>
   <div class="bubble-container" id="bubbles"></div>
-
+  
   <nav class="fixed top-0 w-full z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="#accueil" class="font-bold text-xl text-[#ff4fa3]">Portfolio IA</a>
+      <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 focus:outline-none">
+        <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
+        <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
+        <span class="block w-6 h-0.5 bg-[#ff4fa3]"></span>
+      </button>
       <div class="hidden md:flex gap-6 text-sm">
-        <a href="#accueil">Accueil</a>
-        <a href="#introduction">Introduction</a>
-        <a href="#creations">Créations IA</a>
-        <a href="#conclusion">Conclusion</a>
+        <a href="#accueil" class="hover:text-[#ff4fa3]">Accueil</a>
+        <a href="#introduction" class="hover:text-[#ff4fa3]">Introduction</a>
+        <a href="#creations" class="hover:text-[#ff4fa3]">Créations IA</a>
+        <a href="#conclusion" class="hover:text-[#ff4fa3]">Conclusion</a>
       </div>
     </div>
   </nav>
 
-  <section id="accueil" class="min-h-screen flex items-center justify-center px-6 text-center">
-    <div>
-      <img src="logo.png" alt="Logo" class="w-64 mx-auto mb-8 rounded-3xl shadow-2xl" />
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">Portfolio IA – Écriture multimédia</h1>
-      <p class="text-xl opacity-80 mb-10">Mon parcours, mes tests et ce que je garde humain</p>
-      <a href="#introduction" class="bg-[#ff4fa3] text-white px-10 py-5 rounded-full font-bold">Commencer</a>
+  <section id="accueil" class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="text-center max-w-4xl">
+      <div class="mb-8 flex justify-center">
+        <img src="logo.png" alt="Logo" class="w-64 h-auto rounded-3xl shadow-2xl">
+      </div>
+      <h1 class="main-title text-5xl md:text-7xl font-bold mb-6">Portfolio IA – Écriture multimédia</h1>
+      <p class="text-xl md:text-2xl mb-10 opacity-80">Mon parcours, mes tests et ce que je garde humain</p>
+      <a href="#introduction" class="cta-button inline-block px-10 py-5 rounded-full font-semibold text-white">Commencer</a>
     </div>
   </section>
 
   <section id="introduction" class="py-24 px-6 max-w-4xl mx-auto">
     <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Introduction</h2>
     <div class="card">
-      <p class="mb-6">Je reprends des études en écriture multimédia après avoir déjà eu des expériences dans le digital et la création en tant qu'animatrice multimédia. J'ai toujours aimé travailler avec différents formats et outils, et chercher la bonne façon de transmettre une idée ou une histoire. Aujourd'hui, l'IA fait partie de ma boîte à outils, mais je ne souhaite pas qu'elle prenne la place de ma voix.</p>
-      <p>Pour moi, l'intelligence artificielle est avant tout un outil d'aide. Elle peut m'aider à gagner du temps, à tester des idées ou à proposer plusieurs versions d'un même contenu. En revanche, l'intention, le sens et les choix finaux restent les miens. Ce portfolio montre comment j'ai appris à utiliser l'IA de manière réfléchie, tout en conservant ce qui rend chaque projet personnel.</p>
+      <p class="text-lg leading-relaxed mb-6">Je reprends des études en écriture multimédia après avoir déjà eu des expériences dans le digital et la création en tant qu'animatrice multimédia. J'ai toujours aimé travailler avec différents formats et outils, et chercher la bonne façon de transmettre une idée ou une histoire. Aujourd'hui, l'IA fait partie de ma boîte à outils, mais je ne souhaite pas qu'elle prenne la place de ma voix.</p>
+      <p class="text-lg leading-relaxed">Pour moi, l'intelligence artificielle est avant tout un outil d'aide. Elle peut m'aider à gagner du temps, à tester des idées ou à proposer plusieurs versions d'un même contenu. En revanche, l'intention, le sens et les choix finaux restent les miens. Ce portfolio montre comment j'ai appris à utiliser l'IA de manière réfléchie, tout en conservant ce qui rend chaque projet personnel.</p>
     </div>
   </section>
 
   <section id="passe" class="py-24 px-6 max-w-6xl mx-auto">
-    <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Axe 1 : Parcours</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+    <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Axe 1 : Passé, Présent, Futur</h2>
+    <div class="flex flex-col gap-8">
       <div class="card">
-        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Passé</h3>
-        <p>J'étais déjà familière avec l'IA pour corriger et reformuler des textes. J'avais aussi testé la génération d'images, de sons et de vidéos pour des projets personnels.</p>
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Le Passé</h3>
+        <p>J'étais déjà familière avec l'IA pour corriger et reformuler des textes. J'avais aussi testé la génération d'images, de sons et même de vidéos pour des projets personnels. Je la voyais comme un gain de temps, mais je savais qu'il fallait ajuster et ne pas tout accepter les yeux fermés.</p>
       </div>
       <div class="card">
-        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Présent</h3>
-        <p>J'ai découvert comment mieux prompter : être plus précise, structurer mes demandes et anticiper ce que l'IA peut comprendre ou non. Résultat : moins d'allers-retours, plus d'efficacité.</p>
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Le Présent</h3>
+        <p>J'ai découvert comment mieux prompter : être plus précise, structurer mes demandes, anticiper ce que l'IA peut comprendre ou non. J'ai aussi poussé plus loin Canva IA et NotebookLM, et amélioré un site web en HTML avec Claude.</p>
       </div>
       <div class="card">
-        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Futur</h3>
-        <p>Je veux continuer à utiliser l'IA pour gagner du temps sur les tâches répétitives, mais le sens, le ton et les décisions finales resteront guidés par mes choix et ma vision.</p>
+        <h3 class="font-bold text-xl mb-4 text-[#7a4a2b]">Le Futur</h3>
+        <p>Je veux continuer à utiliser l'IA pour gagner du temps sur les tâches répétitives. Mais je garde humain tout ce qui compte vraiment : le message, le style final, le ton et les décisions créatives. Je reste consciente des enjeux : droit d'auteur, biais et fiabilité.</p>
       </div>
     </div>
   </section>
 
-  <section id="creations" class="py-24 px-6 max-w-6xl mx-auto">
+  <section id="creations" class="py-24 px-6 max-w-5xl mx-auto">
     <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Axe 2 : Créations IA</h2>
 
     <div class="production-card mb-12">
       <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
-      <div class="flex flex-wrap justify-center gap-6 mb-8">
-        <img src="fillerousse.png" class="zoomable w-full md:w-[45%]" alt="Fille rousse 1" />
-        <img src="fillerousse2.png" class="zoomable w-full md:w-[45%]" alt="Fille rousse 2" />
+      <div class="two-col mb-8">
+        <img src="fillerousse.png" class="zoomable" alt="Fille rousse 1">
+        <img src="fillerousse2.png" class="zoomable" alt="Fille rousse 2">
       </div>
-      <h4 class="font-bold text-[#ff4fa3] mb-3">Intention</h4>
-      <p class="mb-4">L'objectif de ce défi était de reproduire une image de référence fournie par l'enseignant en utilisant un outil de génération d'images par IA, en respectant à la fois le style, les couleurs, la composition et le cadrage.</p>
-      <h4 class="font-bold text-[#ff4fa3] mb-3">Analyse critique</h4>
-      <p>La principale difficulté a été d'obtenir un rendu proche de l'image de référence. Malgré un prompt précis, l'IA interprète le style de manière libre. Cette expérience m'a montré l'importance de la précision du prompt et des tests successifs.</p>
+      <h4 class="font-semibold text-xl text-[#ff4fa3] mb-3">Intention</h4>
+      <p class="mb-6">L'objectif de ce défi était de reproduire une image de référence fournie par l'enseignant en respectant le style, les couleurs, la composition et le cadrage.</p>
+      <div class="prompt-box">
+        <p>Génère une jeune fille rousse de style animé, assise sur un banc, vêtue d'un t-shirt blanc, d'un gilet vert et d'une jupe beige. L'image doit être douce et lumineuse.</p>
+      </div>
+      <h4 class="font-semibold text-xl text-[#ff4fa3] mt-6 mb-3">Analyse critique</h4>
+      <p>La difficulté a été d'obtenir un rendu proche de l'original. L'IA interprète le style librement, montrant qu'elle est meilleure pour créer des variations que pour copier fidèlement un style précis.</p>
     </div>
 
     <div class="production-card mb-12">
       <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 2 : Vidéo cinématographique vintage</h3>
       <div class="video-grid-3x2 mb-8">
-        <img src="rue.png" class="zoomable" alt="Rue" /><img src="porte.png" class="zoomable" alt="Porte" />
-        <img src="jambe.png" class="zoomable" alt="Jambe" /><img src="corps.png" class="zoomable" alt="Corps" />
-        <img src="voiture.png" class="zoomable" alt="Voiture" /><img src="pas.png" class="zoomable" alt="Pas" />
+        <img src="rue.png" class="zoomable" alt="Rue">
+        <img src="porte.png" class="zoomable" alt="Porte">
+        <img src="jambe.png" class="zoomable" alt="Jambe">
+        <img src="corps.png" class="zoomable" alt="Corps">
+        <img src="voiture.png" class="zoomable" alt="Voiture">
+        <img src="pas.png" class="zoomable" alt="Pas">
       </div>
-      <video class="video" controls muted><source src="video.mp4" type="video/mp4"></video>
-      <h4 class="font-bold text-[#ff4fa3] mt-8 mb-3">Méthodologie</h4>
-      <p class="mb-4">J'ai imaginé un mini-scénario découpé en six scènes, puis généré six images servant de base visuelle avant d'utiliser Google Studio IA et Canva pour le montage.</p>
-      <h4 class="font-bold text-[#ff4fa3] mb-3">Analyse critique</h4>
-      <p>L'IA a généré les images et la vidéo. De mon côté, j'ai construit et amélioré le script, organisé les scènes, ajusté le prompt et validé les choix narratifs et esthétiques.</p>
+      <div class="text-center mb-8">
+        <h4 class="section-subtitle">Vidéo finale</h4>
+        <video class="video" controls muted playsinline><source src="video.mp4" type="video/mp4"></video>
+      </div>
+      <h4 class="font-bold text-[#ff4fa3] mb-3">Méthodologie</h4>
+      <p>J'ai imaginé un mini-scénario en six scènes, généré six images de base, puis utilisé Google Studio IA pour la vidéo et Canva pour le montage final.</p>
+      <h4 class="font-bold text-[#ff4fa3] mt-6 mb-3">Analyse</h4>
+      <p>L'IA a généré les visuels, mais j'ai construit le script, organisé les scènes, ajusté le prompt et validé les choix esthétiques.</p>
     </div>
 
     <div class="production-card" id="prod3-galerie">
-      <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 3 : Galerie – Prototypage & créations IA</h3>
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="text-center">
-          <img src="dupliquer1.jpeg" class="zoomable mx-auto" alt="Avant" />
-          <p class="font-bold mt-2">Avant (Série 1 — Pose sheet)</p>
-        </div>
-        <div class="text-center">
-          <img src="dupliquer2.jpeg" class="zoomable mx-auto" alt="Après" />
-          <p class="font-bold mt-2">Après (Série 1 — Pose sheet)</p>
+      <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 3 : Galerie – Prototypage</h3>
+      
+      <div class="gal-block">
+        <h4 class="gal-title text-center">Série 1 — Pose sheet</h4>
+        <div class="two-col mb-4">
+          <div class="img-card"><img src="dupliquer1.jpeg" class="zoomable" alt="Avant"><p class="text-center font-bold mt-2">Avant</p></div>
+          <div class="img-card"><img src="dupliquer2.jpeg" class="zoomable" alt="Après"><p class="text-center font-bold mt-2">Après</p></div>
         </div>
       </div>
-      <h4 class="font-bold text-[#ff4fa3] mb-6">Série 3 — Mockup rapide (IA vs retouche manuelle)</h4>
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="text-center"><img src="gris.jpeg" class="zoomable" alt="Support" /><p class="text-sm mt-2">Image 1 — Support canette</p></div>
-        <div class="text-center"><img src="fillecannette.jpeg" class="zoomable" alt="Design" /><p class="text-sm mt-2">Image 2 — Design</p></div>
-        <div class="text-center"><img src="finalecannette.jpeg" class="zoomable" alt="Résultat" /><p class="text-sm mt-2">Résultat final</p></div>
+
+      <div class="gal-block mt-12">
+        <h4 class="gal-title text-center">Série 3 — Mockup rapide</h4>
+        <div class="three-col">
+          <div class="img-card"><img src="gris.jpeg" class="zoomable" alt="Support"><p class="text-sm text-center mt-2">Image 1 — Support canette</p></div>
+          <div class="img-card"><img src="fillecannette.jpeg" class="zoomable" alt="Design"><p class="text-sm text-center mt-2">Image 2 — Design</p></div>
+          <div class="img-card"><img src="finalecannette.jpeg" class="zoomable" alt="Résultat"><p class="text-sm text-center mt-2">Résultat final</p></div>
+        </div>
+        <p class="mt-6 text-center">L'IA génère des mockup rapidement, alors qu'un montage manuel sur Photoshop prendrait beaucoup plus de temps.</p>
       </div>
-      <p class="mb-4">Cette série m'a permis de comparer : l'IA peut générer un mockup rapidement, alors qu'un montage similaire peut prendre plus de temps sur Photoshop.</p>
     </div>
   </section>
 
   <section id="conclusion" class="py-24 px-6 max-w-4xl mx-auto text-center">
     <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Conclusion</h2>
-    <div class="card italic text-xl">"L'IA me permet d'aller plus vite, sans perdre ce qui fait l'essence de mon travail à la fin."</div>
-    <p class="mt-8">Ce cours m'a appris à utiliser l'IA de manière plus stratégique et consciente. Mon objectif : que l'IA soit invisible dans le résultat final, mais précieuse dans le processus.</p>
+    <div class="card mb-8">
+      <p class="text-lg mb-8">Ce cours m'a appris à utiliser l'IA de manière stratégique. Je ne la vois plus comme une simple aide, mais comme un outil que je peux maîtriser et adapter.</p>
+      <div class="closing-quote">"L'IA me permet d'aller plus vite, sans perdre ce qui fait l'essence de mon travail."</div>
+    </div>
   </section>
 
   <footer class="py-12 text-center opacity-60">Sounkara CAMARA • Portfolio IA • 2026</footer>
@@ -250,6 +273,8 @@
       img.onclick = () => { lbImg.src = img.src; lb.classList.add('open'); };
     });
     lb.onclick = () => lb.classList.remove('open');
+    
+    document.getElementById('menuToggle').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
   </script>
 </body>
 </html>
