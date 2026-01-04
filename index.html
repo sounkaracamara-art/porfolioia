@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio IA – Écriture multimédia</title>
-  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -185,7 +188,13 @@
       margin-bottom: 40px;
     }
 
-    .video-grid-3x2 img { height: 300px; border-radius: 16px; object-fit: cover; width: 100%; }
+    .video-grid-3x2 img {
+      height: 300px;
+      border-radius: 16px;
+      object-fit: cover;
+      width: 100%;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
 
     .video-wrapper { margin-top: 20px; margin-bottom: 40px; }
 
@@ -266,11 +275,10 @@
     <div class="text-center max-w-4xl">
       <div class="mb-8 flex justify-center">
         <img
-          src="logo.png"
+          src="images/logo.png"
           alt="Logo"
           class="w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl object-cover"
           style="box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3);"
-          onerror="this.outerHTML='<div class=&quot;placeholder-image w-64 h-64 md:w-80 md:h-80 rounded-3xl shadow-2xl&quot; style=&quot;box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3);&quot;>logo.png introuvable</div>'"
         />
       </div>
 
@@ -391,20 +399,8 @@
         <h3 class="text-3xl font-bold text-[#7a4a2b] mb-8">Production 1 : Défi de génération d'image</h3>
 
         <div class="mb-8 flex justify-center gap-6 flex-wrap">
-          <img
-            src="fillerousse.png"
-            alt="Fille rousse 1"
-            class="rounded-xl shadow-lg object-cover"
-            style="width: 45%; min-width: 300px; height: 400px;"
-            onerror="this.outerHTML='<div class=&quot;placeholder-image rounded-xl shadow-lg&quot; style=&quot;width:45%; min-width:300px; height:400px;&quot;>fillerousse.png introuvable</div>'"
-          />
-          <img
-            src="fillerousse2.png"
-            alt="Fille rousse 2"
-            class="rounded-xl shadow-lg object-cover"
-            style="width: 45%; min-width: 300px; height: 400px;"
-            onerror="this.outerHTML='<div class=&quot;placeholder-image rounded-xl shadow-lg&quot; style=&quot;width:45%; min-width:300px; height:400px;&quot;>fillerousse2.png introuvable</div>'"
-          />
+          <img src="images/fillerousse.png" alt="Fille rousse 1" class="rounded-xl shadow-lg object-cover" style="width: 45%; min-width: 300px; height: 400px;" />
+          <img src="images/fillerousse2.png" alt="Fille rousse 2" class="rounded-xl shadow-lg object-cover" style="width: 45%; min-width: 300px; height: 400px;" />
         </div>
 
         <div class="mb-8">
@@ -438,18 +434,18 @@
         <p class="text-sm uppercase tracking-wide mb-12 opacity-60">IA générative — images vers vidéo</p>
 
         <div class="video-grid-3x2">
-          <img src="rue.png" alt="Rue" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>rue.png introuvable</div>'" />
-          <img src="porte.png" alt="Porte" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>porte.png introuvable</div>'" />
-          <img src="jambe.png" alt="Jambe" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>jambe.png introuvable</div>'" />
-          <img src="corps.png" alt="Corps" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>corps.png introuvable</div>'" />
-          <img src="voiture.png" alt="Voiture" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>voiture.png introuvable</div>'" />
-          <img src="pas.png" alt="Pas" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot;>pas.png introuvable</div>'" />
+          <img src="images/rue.png" alt="Rue" />
+          <img src="images/porte.png" alt="Porte" />
+          <img src="images/jambe.png" alt="Jambe" />
+          <img src="images/corps.png" alt="Corps" />
+          <img src="images/voiture.png" alt="Voiture" />
+          <img src="images/pas.png" alt="Pas" />
         </div>
 
         <div class="video-wrapper">
           <h4 class="section-subtitle">Vidéo finale</h4>
           <video class="video" controls playsinline preload="metadata">
-            <source src="video.mp4" type="video/mp4" />
+            <source src="images/video.mp4" type="video/mp4" />
             Ton navigateur ne supporte pas la vidéo.
           </video>
         </div>
@@ -465,12 +461,7 @@
           </p>
 
           <h5 class="font-semibold mb-3 text-[#ff4fa3]">Prompt utilisé</h5>
-          <img
-            src="promptvideo.png"
-            alt="Prompt vidéo"
-            class="prompt-image"
-            onerror="this.outerHTML='<div class=&quot;placeholder-image prompt-image&quot;>promptvideo.png introuvable</div>'"
-          />
+          <img src="images/promptvideo.png" alt="Prompt vidéo" class="prompt-image" />
         </div>
 
         <div class="card mt-8">
@@ -540,15 +531,13 @@
 
         <div class="gal-block">
           <h4 class="gal-title">Série 1 — Pose sheet (avant / après)</h4>
-
           <div class="two-col">
             <figure class="img-card">
-              <img src="dupliquer1.jpeg" alt="Pose sheet avant" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>dupliquer1.jpeg introuvable</div>'" />
+              <img src="images/dupliquer1.jpeg" alt="Avant pose sheet" />
               <figcaption>Avant</figcaption>
             </figure>
-
             <figure class="img-card">
-              <img src="dupliquer2.jpeg" alt="Pose sheet après" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>dupliquer2.jpeg introuvable</div>'" />
+              <img src="images/dupliquer2.jpeg" alt="Après pose sheet" />
               <figcaption>Après</figcaption>
             </figure>
           </div>
@@ -561,9 +550,8 @@
 
         <div class="gal-block">
           <h4 class="gal-title">Série 2 — Portrait "artist"</h4>
-
           <figure class="img-card single">
-            <img src="artisan1.jpeg" alt="Portrait artist" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:420px;border-radius:14px;&quot;>artisan1.jpeg introuvable</div>'" />
+            <img src="images/artisan1.jpeg" alt="Résultat portrait artist" />
             <figcaption>Résultat</figcaption>
           </figure>
 
@@ -580,24 +568,21 @@
 
         <div class="gal-block">
           <h4 class="gal-title">Série 3 — Mockup rapide (IA vs retouche manuelle)</h4>
-
           <p class="leading-relaxed text-lg mb-6">
             Cette série m'a permis de comparer : l'IA peut générer un mockup rapidement, alors qu'un montage similaire peut prendre plus de temps sur Photoshop en retouche manuelle selon le niveau de précision attendu.
           </p>
 
           <div class="three-col">
             <figure class="img-card">
-              <img src="cannette.jpeg" alt="Support canette" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>cannette.jpeg introuvable</div>'" />
+              <img src="images/cannette.jpeg" alt="Support canette" />
               <figcaption>Image 1 — Support canette</figcaption>
             </figure>
-
             <figure class="img-card">
-              <img src="fillecannette.jpeg" alt="Design canette" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>fillecannette.jpeg introuvable</div>'" />
+              <img src="images/fillecannette.jpeg" alt="Design canette" />
               <figcaption>Image 2 — Design</figcaption>
             </figure>
-
             <figure class="img-card">
-              <img src="finalecannette.jpeg" alt="Résultat final canette" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>finalecannette.jpeg introuvable</div>'" />
+              <img src="images/finalecannette.jpeg" alt="Résultat final canette" />
               <figcaption>Résultat final</figcaption>
             </figure>
           </div>
@@ -622,14 +607,12 @@
 
         <div class="gal-block">
           <h4 class="gal-title">Images pour réseaux sociaux</h4>
-
           <div class="two-col">
             <figure class="img-card">
-              <img src="blanc.png" alt="Image RS blanc" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>blanc.png introuvable</div>'" />
+              <img src="images/blanc.png" alt="Visuel blanc" />
             </figure>
-
             <figure class="img-card">
-              <img src="work.png" alt="Image RS work" onerror="this.outerHTML='<div class=&quot;placeholder-image&quot; style=&quot;height:260px;border-radius:14px;&quot;>work.png introuvable</div>'" />
+              <img src="images/work.png" alt="Visuel work" />
             </figure>
           </div>
 
@@ -638,19 +621,20 @@
           </p>
         </div>
       </section>
-
     </div>
   </section>
 
   <section id="conclusion" class="py-24 px-6 bg-white/50">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-5xl font-bold mb-12 text-[#ff4fa3]">Conclusion</h2>
+
       <div class="card mb-8">
         <h3 class="text-2xl font-semibold mb-4 text-[#7a4a2b]">Ce que ce cours a changé</h3>
         <p class="text-lg leading-relaxed mb-4">
           Ce cours m'a appris à utiliser l'IA de manière plus stratégique et consciente. Je ne la vois plus comme une simple aide ponctuelle, mais comme un véritable outil de travail que je peux maîtriser et adapter à mes besoins.
         </p>
       </div>
+
       <div class="card mb-12">
         <h3 class="text-2xl font-semibold mb-4 text-[#7a4a2b]">Ce que je veux continuer à développer</h3>
         <p class="text-lg leading-relaxed">
@@ -688,7 +672,7 @@
 
       bubblesContainer.appendChild(bubble);
 
-      setTimeout(() => { bubble.remove(); }, duration * 1000);
+      setTimeout(() => bubble.remove(), duration * 1000);
     }
 
     setInterval(createBubble, 800);
@@ -712,11 +696,10 @@
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   </script>
 </body>
 </html>
+
