@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -274,28 +274,33 @@
       transform: scale(1.02);
     }
 
-    #prod3-galerie .gal-block{
+    /* ✅ ALIGNEMENT STRUCTURÉ (pose sheet / mockup / réseaux sociaux) */
+    .gal-block{
       margin-top: 28px;
       padding-top: 18px;
       border-top: 1px solid rgba(255,79,163,0.15);
     }
-    #prod3-galerie .gal-title{
+    .gal-title{
       font-size: 1.35rem;
       font-weight: 800;
       color: #7a4a2b;
       margin-bottom: 14px;
     }
-    #prod3-galerie .two-col{
+
+    .two-col{
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 18px;
+      align-items: stretch;
     }
-    #prod3-galerie .three-col{
+    .three-col{
       display: grid !important;
       grid-template-columns: 1fr 1fr 1fr !important;
       gap: 18px;
+      align-items: stretch;
     }
-    #prod3-galerie .img-card{
+
+    .img-card{
       background:#fff;
       border-radius:18px;
       padding:12px;
@@ -304,23 +309,31 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
+      height: 100%;
     }
-    #prod3-galerie .img-card img{
+    .img-card img{
       width:100%;
-      height: auto;
+      flex: 1 1 auto;
       min-height: 300px;
       max-height: 500px;
       object-fit: contain;
       border-radius:14px;
+      display: block;
     }
-    #prod3-galerie .img-card.single img{ 
+    .img-card.single img{ 
       max-height:420px; 
     }
-    #prod3-galerie figcaption{
+
+    figcaption{
       margin-top:10px;
       font-weight:600;
       color:#7a4a2b;
       text-align: center;
+      min-height: 24px; /* aligne les légendes même si elles n'ont pas la même longueur */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
 
     .bullets {
