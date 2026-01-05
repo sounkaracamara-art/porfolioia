@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html> 
 <html lang="fr" class="scroll-smooth">
 <head>
@@ -352,6 +353,17 @@
       position: absolute;
       left: 0;
       top: 4px;
+    }
+
+    /* ✅ Série 5 — Audio */
+    .audio-player{
+      width: 100%;
+      margin-top: 10px;
+    }
+    .audio-caption{
+      margin-top: 12px;
+      line-height: 1.6;
+      font-size: 1.05rem;
     }
   </style>
 </head>
@@ -734,6 +746,29 @@
           </p>
         </div>
 
+        <!-- ✅ Série 5 — Création audio -->
+        <div class="gal-block">
+          <h4 class="gal-title">Série 5 — Création audio</h4>
+
+          <figure class="img-card single">
+            <img src="intro.png" alt="Visuel d’introduction du serious game" />
+
+            <div class="audio-caption">
+              Dans le cadre du cours de scénarisation, j’ai participé à la création d’un serious game autour de la santé mentale.
+              En fin de parcours, j’ai conçu une séquence interactive basée sur la recherche d’un numéro.
+              Lorsque le joueur le compose, il déclenche une voix générée par IA annonçant :
+              <em>« Bienvenue à la Ligue bruxelloise pour la santé mentale »</em>.
+            </div>
+
+            <audio class="audio-player" controls preload="metadata">
+              <source src="repondeur.mp3" type="audio/mpeg" />
+              Votre navigateur ne supporte pas l’audio.
+            </audio>
+
+            <figcaption>Extrait audio intégré comme élément narratif final</figcaption>
+          </figure>
+        </div>
+
         <div class="mt-10">
           <h4 class="font-semibold mb-4 text-xl text-[#ff4fa3]">Analyse critique</h4>
           <ul class="bullets">
@@ -838,3 +873,4 @@
   </script>
 </body>
 </html>
+```
